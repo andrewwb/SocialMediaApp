@@ -1,0 +1,8 @@
+﻿.movieBox{
+    background-color: none;
+    border-radius: 5px;
+    padding-top: 20px;
+}
+.movieBox:hover{
+    background-color: #1f1d1d;
+}

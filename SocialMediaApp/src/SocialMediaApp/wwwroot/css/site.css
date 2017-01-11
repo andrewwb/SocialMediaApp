@@ -1,6 +1,12 @@
-﻿body {
+﻿#navPad{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #332C2B;
 }
 
 /* Wrapping element */
@@ -8,6 +14,23 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+/*.view{
+    background-color: #332C2B;
+    height: 100%;
+}*/
+.view-nav{
+    background-color: #1f1d1d;
+    border-right: solid 1px #080808;
+    height: 100%;
+    padding-top: 40px;
+}
+
+.view-content{
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
@@ -33,6 +56,12 @@ textarea {
     display:inline-block;
     content: "]";
     padding-left: 0.5em;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"]
+{
+    width: 100%;
 }
 
 /* Hide/rearrange for smaller screens */

@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using SocialMediaApp.Data;
 using SocialMediaApp.Models;
 using SocialMediaApp.Services;
+using SocialMediaApp.Infrastructure;
+using System.Net.Http;
 
 namespace SocialMediaApp
 {
@@ -50,8 +52,20 @@ namespace SocialMediaApp
             services.AddMvc();
 
             // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
+            //services.AddTransient<IEmailSender, AuthMessageSender>();
+            //services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            //Repositories
+            services.AddScoped<CommentRepository>();
+            services.AddScoped<DiscussionRepository>();
+            services.AddScoped<MessageRepository>();
+            services.AddScoped<NotificationRepository>();
+            //Services
+            services.AddScoped<CommentService>();
+            services.AddScoped<DiscussionService>();
+            services.AddScoped<MessageService>();
+            services.AddScoped<NotificationService>();
+            services.AddScoped<HttpClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,11 +91,11 @@ namespace SocialMediaApp
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
-            app.UseMvc(routes =>
-            {
+            app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{*path}",
+                    defaults: new { controller = "Home", action = "Index" });
             });
         }
     }
